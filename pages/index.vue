@@ -1,34 +1,31 @@
-<template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        blog-demo
-      </h1>
-      <h2 class="subtitle">
-        My funkadelic Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green"
-          >Documentation</a
-        >
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-          >GitHub</a
-        >
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section
+    Swiper(:posts="posts")
+    PostsList(:posts="posts")
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Swiper from '~/components/Swiper'
+import PostsList from '~/components/PostsList'
+import axios from 'axios'
 
 export default {
   components: {
-    Logo
+    Swiper,
+    PostsList
+  },
+  asyncData({ params, error }) {
+    return axios
+      .get(`https://api.github.com/repos/jijigo/notes/issues`)
+      .then(res => {
+        console.log(res)
+        return {
+          posts: res.data.slice(0, 5)
+        }
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 }
 </script>
