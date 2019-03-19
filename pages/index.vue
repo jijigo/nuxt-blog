@@ -1,7 +1,9 @@
 <template lang="pug">
   section
     Swiper(:posts="posts")
-    PostsList(:posts="posts")
+    .container
+      h1.mb-4 近期文章
+      PostsList(:posts="posts")
 </template>
 
 <script>
@@ -16,7 +18,9 @@ export default {
   },
   asyncData({ params, error }) {
     return axios
-      .get(`https://api.github.com/repos/jijigo/notes/issues`)
+      .get(
+        `https://api.github.com/repos/jijigo/notes/issues?client_id=69b20c68610effdb3301&client_secret=6c34ebfd3013782746e09734505691b3f311655f`
+      )
       .then(res => {
         console.log(res)
         return {
@@ -32,33 +36,7 @@ export default {
 
 <style>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  max-width: 700px;
+  margin: 50px auto;
 }
 </style>

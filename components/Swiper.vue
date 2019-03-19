@@ -3,8 +3,8 @@
     .swiper-wrapper
       .swiper-slide(v-for="item in list" :style="{'backgroundImage': 'url(' + item.bg + ')'}"
         style="height: 300px; background")
-        h1 {{ item.title }}
-        b-link.stretched-link(:to="'/posts/'+ item.number") 進入文章
+        .title {{ item.title }}
+        b-link.stretched-link(:to="'/posts/'+ item.number")
     .swiper-button-prev
     .swiper-button-next
 </template>
@@ -51,8 +51,27 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.banner {
+  .swiper-slide {
+    background-size: contain;
+  }
+}
+</style>
+
 <style lang="scss" scoped>
 .banner {
+  .title {
+    position: absolute;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    font-size: 20px;
+    color: #000;
+  }
   & /deep/ .swiper-slide {
     background-size: cover;
     background-position: center;

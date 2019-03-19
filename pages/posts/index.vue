@@ -1,7 +1,8 @@
 <template lang="pug">
   .wrapper
     h1 文章列表
-    PostsList(:posts="posts")
+    .container
+      PostsList(:posts="posts")
 </template>
 
 <script>
@@ -25,3 +26,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.wrapper {
+  .container {
+    max-width: 700px;
+  }
+  h1 {
+    margin: 50px auto;
+    text-align: center;
+  }
+}
+</style>

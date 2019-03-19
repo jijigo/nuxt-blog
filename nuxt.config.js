@@ -24,12 +24,16 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/assets/scss/app.scss',
+    'bootstrap-vue/dist/bootstrap-vue.css',
+    { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' }
+  ],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['plugins/bootstrap-vue.js'],
 
   /*
    ** Nuxt.js modules
@@ -40,7 +44,9 @@ module.exports = {
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/markdownit
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    // Doc: https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources'
   ],
   /*
    ** Axios module configuration
@@ -53,9 +59,18 @@ module.exports = {
     preset: 'default',
     linkify: true,
     breaks: true,
-    injected: true
+    injected: true,
+    use: ['markdown-it-highlightjs']
   },
-
+  /**
+   * https://github.com/nuxt/nuxt.js/tree/dev/examples/style-resources
+   */
+  styleResources: {
+    // your settings here
+    scss: '~/assets/scss/mixin.scss',
+    less: [],
+    stylus: []
+  },
   /*
    ** Build configuration
    */
