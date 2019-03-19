@@ -3,7 +3,7 @@ const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
         router: {
-          base: '/jijigo/'
+          base: '/nuxt-blog/'
         }
       }
     : {}
@@ -36,6 +36,7 @@ module.exports = {
    */
   css: [
     '~/assets/scss/app.scss',
+    'swiper/dist/css/swiper.css',
     'bootstrap-vue/dist/bootstrap-vue.css',
     { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' }
   ],
@@ -43,7 +44,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['plugins/bootstrap-vue.js'],
+  plugins: [
+    'plugins/bootstrap-vue.js',
+    { src: '~/plugins/nuxt-swiper-plugin.js', ssr: false }
+  ],
 
   /*
    ** Nuxt.js modules
