@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .banner {
+  position: relative;
   .title {
     position: absolute;
     padding: 30px;
