@@ -1,4 +1,3 @@
-import axios from 'axios'
 const pkg = require('./package')
 
 const routerBase =
