@@ -13,7 +13,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   router: {
-    base: '/nuxt-blo/'
+    base: '/nuxt-blog/'
   },
   generate: {
     routes: function() {
