@@ -15,17 +15,6 @@ module.exports = {
   router: {
     ...routerBase
   },
-  generate: {
-    routes: function() {
-      return axios
-        .get('https://api.github.com/repos/jijigo/notes/issues/')
-        .then(res => {
-          return res.data.map(post => {
-            return '/posts/' + post.number
-          })
-        })
-    }
-  },
   /*
    ** Headers of the page
    */
