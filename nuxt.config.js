@@ -1,7 +1,31 @@
+const axios = require('axios')
 const pkg = require('./package')
+
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+          base: '/nuxt-blog/'
+        }
+      }
+    : {}
 
 module.exports = {
   mode: 'universal',
+  router: {
+    ...routerBase
+  },
+  generate: {
+    routes: function() {
+      return axios
+        .get('https://api.github.com/repos/jijigo/notes/issues')
+        .then(res => {
+          return res.data.map(post => {
+            return '/posts/' + post.number
+          })
+        })
+    }
+  },
   /*
    ** Headers of the page
    */
