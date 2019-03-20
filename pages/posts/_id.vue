@@ -3,7 +3,7 @@
     .container.flex-column.text-left
       h1.post__title {{ post.title }}
       .post__content(v-html="$md.render(content)")
-    RelatePosts(:posts="relatePosts")
+    RelatePosts(:posts="posts")
 </template>
 
 <script>
@@ -22,21 +22,6 @@ export default {
   computed: {
     content() {
       return this.post.body.replace(`# ${this.post.title}`, '')
-    },
-    relatePosts() {
-      const random = []
-      while (random.length < 3) {
-        if (this.posts.length === 0) {
-          break
-        }
-        const num = Math.floor(Math.random() * this.posts.length)
-        if (random.indexOf(num) === -1) {
-          random.push(num)
-        }
-      }
-      return this.posts.filter(post => {
-        return random.includes(post.number)
-      })
     }
   },
   async asyncData({ params }) {
@@ -45,7 +30,6 @@ export default {
         params.id
       }?client_id=69b20c68610effdb3301&client_secret=6c34ebfd3013782746e09734505691b3f311655f`
     )
-
     return { post: post.data }
   },
   created() {
@@ -54,8 +38,25 @@ export default {
         `https://api.github.com/repos/jijigo/notes/issues?client_id=69b20c68610effdb3301&client_secret=6c34ebfd3013782746e09734505691b3f311655f`
       )
       .then(res => {
-        this.posts = res.data
+        this.getRelatePost(res.data)
       })
+  },
+  methods: {
+    getRelatePost(posts) {
+      const random = []
+      while (random.length < 3) {
+        if (posts.length === 0) {
+          break
+        }
+        const num = Math.floor(Math.random() * posts.length)
+        if (random.indexOf(num) === -1 && (num !== 6 || num !== 0)) {
+          random.push(num)
+        }
+      }
+      this.posts = posts.filter(post => {
+        return random.includes(post.number)
+      })
+    }
   }
 }
 </script>
@@ -69,6 +70,7 @@ export default {
   }
   &__title {
     margin: 30px 0;
+    word-break: break-all;
   }
 }
 </style>

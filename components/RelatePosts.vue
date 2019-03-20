@@ -7,7 +7,7 @@
           img-alt='Image' img-top='' tag='article')
           b-card-text
             | {{ post.body.substr(0, 100) }}
-          router-link.stretched-link(:href="'/posts/' + post.number")
+          router-link.stretched-link(:to="'/posts/' + post.number")
 </template>
 
 <script>
