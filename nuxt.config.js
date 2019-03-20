@@ -1,19 +1,19 @@
 const axios = require('axios')
 const pkg = require('./package')
 
-const routerBase =
-  process.env.DEPLOY_ENV === 'GH_PAGES'
-    ? {
-        router: {
-          base: '/nuxt-blog/'
-        }
-      }
-    : {}
+// const routerBase =
+//   process.env.DEPLOY_ENV === 'GH_PAGES'
+//     ? {
+//         router: {
+//           base: '/nuxt-blog/'
+//         }
+//       }
+//     : {}
 
 module.exports = {
   mode: 'universal',
   router: {
-    ...routerBase
+    base: '/nuxt-blo/'
   },
   generate: {
     routes: function() {
